@@ -1,0 +1,76 @@
+<div class="container">
+    <div class="jumbotron">
+        <h2>Create FoodItem</h2>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <form [formGroup]="foodItemForm" (ngSubmit)="createFoodItem()">
+                    <div class="row mb-3">
+                        <label for="id" class="col-sm-2 col-form-label"> Id:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control form-control-sm" formControlName="id" />
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="name" class="col-sm-2 col-form-label">Name:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control form-control-sm" formControlName="name" />
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="type" class="col-sm-2 col-form-label">Type:</label>
+                        <div class="col-sm-10">
+                            <datalist id="foodTypes">
+                                <option value="PROTEIN">
+                                <option value="FAT">
+                                <option value="VEGGIES">
+                                <option value="CARBS">                             
+                            </datalist>
+                            <input type="text" list="foodTypes" class="form-control form-control-sm" formControlName="type" />
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="price" class="col-sm-2 col-form-label">Price:</label>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control form-control-sm" formControlName="price" />
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="image" class="col-sm-2 col-form-label">Image Path:</label>
+                        <div class="col-sm-10">
+                            <datalist id="imagePaths">
+                                <option value="http://cdn.pixabay.com/photo/2015/09/17/17/19/eggs-944495_960_720.jpg">
+                                <option value="http://cdn.pixabay.com/photo/2016/06/30/18/54/sardines-1489630_960_720.jpg">
+                                <option value="http://cdn.pixabay.com/photo/2016/06/11/04/09/butter-1449453_960_720.jpg">
+                                <option value="http://cdn.pixabay.com/photo/2015/10/26/07/21/vegetables-1006694_960_720.jpg">  
+                                <option value="http://cdn.pixabay.com/photo/2015/07/31/12/07/soup-greens-869075_960_720.jpg">
+                                <option value="http://cdn.pixabay.com/photo/2015/08/18/22/56/fruit-895005_960_720.png">
+                            </datalist>
+                            <input type="text" list="imagePaths"  class="form-control form-control-sm" formControlName="imagepath" />
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label"></label>
+                        <div class="col-sm-10">
+                            <div class="col-sm-10">
+                                <button type="submit" class="btn btn-success me-2"> {{ buttonName }}</button>
+                                <button type="reset" class="btn btn-warning">Clear</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div> 
+            <div *ngIf="storeMsg"
+                class="row alert alert-info">
+                {{ storeMsg }}
+            </div>
+        </div>
+    </div>
+</div>
