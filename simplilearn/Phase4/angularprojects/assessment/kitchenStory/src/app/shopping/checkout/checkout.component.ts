@@ -89,9 +89,7 @@ export class CheckoutComponent implements OnInit {
     .subscribe(
               result => 
                  {     
-                     console.log("ddddd")
                      this.apiPymntResponse = result;
-                     console.log("Make payment result is " + result);
                  },
       
           error => console.log('>>>> Error oops >>>>> ', error.message),

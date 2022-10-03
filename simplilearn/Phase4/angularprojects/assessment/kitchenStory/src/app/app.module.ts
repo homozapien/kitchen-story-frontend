@@ -14,8 +14,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { ShoppingComponent } from './shopping/shopping.component';
 import { FoodItemsFilterPipe } from './food-items-filter.pipe';
 import { CheckoutComponent } from './shopping/checkout/checkout.component';
-import { PaymentComponent } from './shopping/payment/payment.component';
-import { ConfirmationComponent } from './shopping/payment/confirmation/confirmation.component';
 import { ShoppingListComponent } from './shopping/shopping-list/shopping-list.component';
 
 
@@ -30,8 +28,6 @@ import { ShoppingListComponent } from './shopping/shopping-list/shopping-list.co
     ShoppingComponent,
     FoodItemsFilterPipe,
     CheckoutComponent,
-    PaymentComponent,
-    ConfirmationComponent,
     ShoppingListComponent
   ],
   imports: [

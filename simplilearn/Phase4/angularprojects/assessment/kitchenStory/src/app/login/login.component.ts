@@ -17,8 +17,8 @@ export class LoginComponent implements OnInit {
     private router: Router) { }
 
   loginForm = new FormGroup({
-    username: new FormControl('admin@kitchenstory.com'),
-    password: new FormControl('123')
+    username: new FormControl(),
+    password: new FormControl()
   });
 
   ngOnInit(): void {
