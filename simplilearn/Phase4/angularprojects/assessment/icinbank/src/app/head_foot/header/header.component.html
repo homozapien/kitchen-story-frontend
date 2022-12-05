@@ -1,0 +1,78 @@
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #c7dbd2;"> <!-- style="background-color: #7ecd5e;;"-->
+  <div class="container-fluid">
+    <span class="navbar-brand mb-0 h1"><i class="bi bi-bank"></i> ICIN Bank</span>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" routerLinkActive="active" [routerLink]="['/home']">Home</a>
+        </li>
+
+        <li class="nav-item dropdown" *ngIf="role === 'ADMIN'">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Branch Operations
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" [routerLink]="['/branchMgmt']">Manage Branch</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/operationMgmt']">Manage Operation</a></li> 
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown" *ngIf="role === 'ADMIN'">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Request Management
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" [routerLink]="['/custProfileReqMgmt']">Customer Profile</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/acctOpenReqMgmt']">Account Opening</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/checkBookReqMgmt']">Check Book</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="#">Create Operation</a></li>
+            <li><a class="dropdown-item" href="#">Edit Operation</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown" *ngIf="role !== 'ADMIN'">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Customer Profile
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" [routerLink]="['/createProfile']" *ngIf="isBranchOperSetupComplete && !isLoggedIn">Create Profile</a></li>
+            <li><a class="dropdown-item" href="#" *ngIf="role === 'CUSTOMER'">Edit Profile</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown" *ngIf="role === 'CUSTOMER'">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Customer Operations
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Cash Withdrawal</a></li>
+            <li><a class="dropdown-item" href="#">Cash Deposit</a></li>
+            <li><a class="dropdown-item" href="#">Fund Transfer</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="#">Request Check Book</a></li>
+            <li><a class="dropdown-item" href="#">Add Dependant</a></li>
+          </ul>
+        </li>
+
+      </ul>
+      <form class="d-flex">
+
+        <button class="btn btn-sm btn-success me-2" ariaCurrentWhenActive="page" routerLinkActive="active"
+          [routerLink]="['/login']" type="button" [disabled]="isLoggedIn">Login</button>
+        <button class="btn btn-sm btn-danger" ariaCurrentWhenActive="page" routerLinkActive="active"
+          (click)="signOut()" type="button" [hidden]="!isLoggedIn">Logout</button>
+      </form>
+    </div>
+  </div>
+</nav>

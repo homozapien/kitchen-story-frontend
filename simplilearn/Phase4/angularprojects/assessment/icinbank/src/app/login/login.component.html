@@ -1,0 +1,90 @@
+<div class="container-fluid">
+    <div class="card">
+        <h5 class="card-header">Sign-In</h5>
+        <div class="card-body">
+            <div class="row">
+                <form [formGroup]="loginForm" *ngIf="!isLoggedIn" (ngSubmit)="onSubmit()">
+
+                    <!--  <div class="row input-group-sm mb-3 ">
+                        <label for="userId" class="col-sm-4 col-form-label">Username:</label>
+                        <div class="col-sm-8 w-50">
+                            <span class="input-group-text" id="inputGroupPrepend">@</span>
+                            <input type="text" class="form-control" formControlName="userId" aria-describedby="inputGroupPrepend"
+                             required/>
+                        </div>
+                    </div> 
+                
+                      <div class="row input-group-sm mb-3">
+                        <label for="password" class="col-sm-4 col-form-label">Password:</label>
+                        <div class="col-sm-8 w-50">
+                            <input type="password" class="form-control" formControlName="password" 
+                            required />
+                        </div>
+                    </div>
+                
+                -->
+
+
+                    <!--   <div class="row input-group-sm mb-3">
+                        <label for="userId" class="col-sm-4 col-form-label text-right justify-content-end">Username:</label>
+                        <div class="form-group col-sm-8 w-50">
+                            <div class="input-group">
+                                <span class="input-group-text" id="inputGroupPrepend">@</span>
+                                <input type="text" class="form-control" formControlName="userId"  
+                                   id="userId" aria-describedby="inputGroupPrepend" required>
+                                 
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <div class="form-group row mb-3">
+                        <label for="userId" class="col-sm-4 col-form-label " style="text-align: right; ">Username:</label>
+                        <div class="col-sm-8 w-50 input-group">
+                            <span class="input-group-text" id="bi-person-check"><i
+                                    class="bi bi-person-check"></i></span>
+                            <input type="text" class="form-control" formControlName="userId" id="userId"
+                                aria-describedby="bi-person-check" required>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row mb-3">
+                        <label for="password" class="col-sm-4 col-form-label" style="text-align: right; ">Password:</label>
+                        <div class="input-group col-sm-8 w-50" >
+                            <span class="input-group-text" id="personlock"><i class="bi bi-person-lock"></i></span>
+                            <input type="password" class="form-control" formControlName="password" id="password"
+                                aria-describedby="personlock" required>
+                        </div>
+                    </div>
+
+                    <hr>
+                    <div class="form-group row mb-3">
+                        <label class="col-sm-4 col-form-label"></label>
+                        <div class="form-group col-sm-8 ">
+                            <button class="btn btn-primary btn-block me-2" type="submit">
+                                Login
+                            </button>
+                            <button class="btn btn-secondary btn-block" type="reset">
+                                Reset
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <br />
+            <div *ngIf="errorMessage" class="row alert alert-danger">
+                {{ errorMessage }}
+            </div>
+            <div class="alert alert-success" *ngIf="isLoggedIn && loggedInUserProfile">
+
+                Profile Information: <br>
+                User Id: {{ loggedInUserProfile.username }} <br>
+                Home BranchId: {{ loggedInUserProfile.branchId }} <br>
+                Email Id: {{ loggedInUserProfile.emailId }} <br>
+                JWT: {{ loggedInUserProfile.jwtToken }} <br>
+                Role: {{ loggedInUserProfile.role }}.<br>
+
+            </div>
+        </div>
+    </div>
+</div>

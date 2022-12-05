@@ -1,0 +1,37 @@
+<div class="card">
+  <div class="card-body">
+    <div class="row">
+      <table class="table table-success table-hover table-striped caption-top"
+        *ngIf="isFoundPendingProfiles; else noPendingCustomerProfile">
+        <caption>
+          <h3><span style="color:maroon">Pending Customer Profiles Queue</span></h3>
+        </caption>
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">RequestId</th>
+            <th scope="col">Username</th>
+            <th scope="col">Request date</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let profile of profiles;let i=index; ">
+            <th scope="row">{{ i + 1}}</th>
+            <td>{{ profile.requestId }}</td>
+            <td>{{ profile.userId | uppercase}}</td>
+            <td>{{ profile.requestDate}}</td>
+            <td><button type="button" class="btn btn-secondary" (click)="onSelectForUpdate(profile)">Show
+                Detail</button></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <ng-template #noPendingCustomerProfile>
+        <div class="row alert alert-warning" *ngIf="apiError">
+          {{ apiError }}
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>

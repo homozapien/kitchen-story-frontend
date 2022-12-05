@@ -1,0 +1,136 @@
+<div class="container">
+    <div class="jumbotron">
+        <h2>Sign Up</h2>
+    </div>
+    <hr>
+    <div class="card">
+        <div class="card-body">
+                <div class="row alert alert-success" *ngIf="successMessage">
+                    <p>Your account opening profile request was successfully created with the following details: </p>
+                    <span style="color: red;">Request Id: {{ successMessage }}</span> <br>
+                    <span style="color: red;">Username: {{ userId }}</span><br>
+                    <span style="color: red;">Email: {{ emailAddr }}</span>
+                    <p>This request is currently in <span style="color: red;"> PENDING </span> status and if approved by the Bank Admin, <br>
+                      a notification will be sent to your email address on file!
+                    </p>
+                </div>
+            <div class="row">
+                <form *ngIf="isBranchSetupComplete; else brancSetupNotComplete" 
+                [formGroup]="profileFormGrp" 
+                novalidate
+                class="needs-validation" (ngSubmit)="profileFormGrp.valid && onSubmit()">
+
+                    <div class="row mb-3">
+                        <label for="firstname" class="col-sm-2 col-form-label">Firstname</label>
+                        <div class="form-group col-sm-8">
+                            <div class="input-group">
+                                <span class="input-group-text" id="person1"><i class="bi bi-person-fill"></i></span>
+                                <input type="text" class="form-control " formControlName="firstname" id="firstname"
+                                    required aria-describedby="person1" />
+                            </div>
+                            <div class="alert alert-danger" *ngIf="firstname.invalid && (firstname.dirty || firstname.touched)"> 
+                                <div *ngIf="firstname.errors?.['required']">Firstname is required</div>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="lastname" class="col-sm-2 col-form-label">Lastname</label>
+                        <div class="form-group col-sm-8">
+                            <div class="input-group" >
+                                <span class="input-group-text" id="person2"><i class="bi bi-person-fill"></i></span>
+                                <input type="text" class="form-control" formControlName="lastname" 
+                                id="lastname" required aria-describedby="person2">
+                            </div>
+                            <div class="alert alert-danger" *ngIf="lastname.invalid && (lastname.dirty || lastname.touched)"> 
+                                <p *ngIf="lastname.errors?.['required']">Last is required</p>
+                          </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="phonenum" class="col-sm-2 col-form-label">Phone</label>
+                        <div class="form-group col-sm-8">
+                            <div class="input-group">
+                                <span class="input-group-text" id="telephone1"><i class="bi bi-telephone"></i></span>
+                                <input type="text" class="form-control" formControlName="phonenum" id="phonenum"
+                                    aria-describedby="telephone1" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="emailId" class="col-sm-2 col-form-label">Email Address</label>
+                        <div class="form-group col-sm-8">
+                            <div class="input-group">
+                                <span class="input-group-text" id="envelop1"><i class="bi bi-envelope-at"></i></span>
+                                <input type="email" class="form-control" formControlName="emailId" id="emailId"
+                                    aria-describedby="envelop1" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="username" class="col-sm-2 col-form-label">Username</label>
+                        <div class="form-group col-sm-8 ">
+                            <div class="input-group has-validation">
+                                <span class="input-group-text" id="inputGroupPrepend">@</span>
+                                <input type="text" class="form-control" formControlName="username"  
+                                   id="username" aria-describedby="inputGroupPrepend" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="password" class="col-sm-2 col-form-label">Password</label>
+                        <div class="form-group col-sm-8">
+                            <div class="input-group">
+                                <span class="input-group-text" id="personlock"><i class="bi bi-person-lock"></i></span>
+                                <input type="password" class="form-control" formControlName="password" id="password"
+                                    aria-describedby="personlock" required>
+                                <div class="form-control-feedback" *ngIf="password.invalid && password.dirty">
+                                    Password Field is invalid
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="homebranch" class="col-sm-2 col-form-label">Home Branch</label>
+                        <div class="form-group col-sm-8">
+                            <div class="input-group">
+                                <span class="input-group-text" id="housebranch"><i class="bi bi-house"></i></span>
+                                <select class="form-select form-select-sm" formControlName="homebranch"
+                                    aria-describedby="housebranch">
+                                    <option selected disabled value="">Select your home branch--</option>
+                                    <option *ngFor="let branch of branches" [ngValue]="branch.branch_id">
+                                        {{ branch.name }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label"></label>
+                        <div class="col-sm-8">
+                            <button class="btn btn-primary btn-block me-2" type="submit">Sign Up!</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <ng-template #brancSetupNotComplete>
+                <div class="row alert alert-danger">
+
+                    Branch setup has not been completed; you will not be able to setup a home branch for your
+                    profile!<br>
+                    <span>Contact Bank admin on "admin@icinbank.com" with this error message</span>
+                </div>
+            </ng-template>
+
+            <div class="row alert alert-danger" *ngIf="errorMessage">
+                {{ errorMessage }}
+            </div>
+            
+        </div>
+    </div>
+</div>

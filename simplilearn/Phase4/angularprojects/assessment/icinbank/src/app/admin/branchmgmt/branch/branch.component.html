@@ -1,0 +1,88 @@
+<div class="card">
+    <h5 class="card-header"><span style="color:maroon">{{ jumbotronTitle}}</span></h5>
+    <div class="card-body">
+    
+        <!--  <div class="card-body">
+        <div class="row alert alert-danger" *ngIf="errorMsg">
+            {{ errorMsg }}
+        </div>
+        <div class="row alert alert-success" *ngIf="apiResponse">
+            {{ apiResponse }}
+        </div>
+    
+         <div class="form-group row mb-3">
+                        <label for="password" class="col-sm-4 col-form-label" style="text-align: right; ">Password:</label>
+                        <div class="input-group col-sm-8 w-50" >
+                            <span class="input-group-text" id="personlock"><i class="bi bi-person-lock"></i></span>
+                            <input type="password" class="form-control" formControlName="password" id="password"
+                                aria-describedby="personlock" required>
+                        </div>
+                    </div>
+    
+    -->
+        <hr>
+        <div class="row">
+            <form #profileFormRef="ngForm" [formGroup]="branchFormGrp" (ngSubmit)="createorUpdateBranch()">
+                <div class="row mb-3">
+                    <label for="branchid" class="col-sm-2 col-form-label" style="text-align: right; ">Branch Id:</label>
+                    <div class="form-group col-sm-8">
+                        <div class="input-group w-50">
+                            <span class="input-group-text" id="bidot1"><i class="bi bi-dot"></i></span>
+                            <input type="text" class="form-control" formControlName="branchid"
+                                aria-describedby="bidot1" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label for="name" class="col-sm-2 col-form-label" style="text-align: right; ">Description:</label>
+                    <div class="form-group col-sm-8 ">
+                        <div class="input-group">
+                            <span class="input-group-text" id="inputGroupPrepend">@</span>
+                            <input type="text" class="form-control" formControlName="name"
+                                aria-describedby="inputGroupPrepend">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label for="address" class="col-sm-2 col-form-label" style="text-align: right; ">Address:</label>
+                    <div class="form-group col-sm-8">
+                        <div class="input-group">
+                            <span class="input-group-text" id="person1"><i class="bi bi-person-fill"></i></span>
+                            <input type="text" class="form-control" formControlName="address"
+                                aria-describedby="person1" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3" *ngIf="isShowSetupAcctCntrl">
+                    <label for="operations" class="col-sm-2 col-form-label">Setup Branch Account</label>
+                    <div class="form-group col-sm-8">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" value="Yes" id="setupAccountRBtnYes"
+                                formControlName="setupAccount">
+                            <label class="form-check-label" for="setupAccountRBtnYes">Yes</label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" value="No" id="setupAccountRBtnNo"
+                                formControlName="setupAccount">
+                            <label class="form-check-label" for="setupAccountRBtnNo">No</label>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label"></label>
+                    <div class="col-sm-8">
+                        <button class="btn btn-primary btn-block me-2" type="submit">{{ bttnLabel }}</button>
+                        <button class="btn btn-secondary btn-block" type="reset">
+                            Reset
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

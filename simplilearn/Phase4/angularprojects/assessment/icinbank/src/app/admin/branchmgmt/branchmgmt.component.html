@@ -1,0 +1,10 @@
+<div class="container">
+    <div class="jumbotron">
+        <h2>Branch Management Board</h2>
+    </div>
+    <app-branch
+    [branchForUpdate]="branchForUpdate"></app-branch>
+    <br>
+    <app-branch-list
+    (selectedBranchForUpdateEvt)="selectForUpdate($event)"></app-branch-list>
+</div>

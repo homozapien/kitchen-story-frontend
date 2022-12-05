@@ -1,0 +1,31 @@
+<div class="card">
+    <div class="card-body">
+      <div class="row">
+        <table class="table table-success table-hover table-striped caption-top">
+          <caption>
+            <h3><span style="color:maroon">Branch List </span></h3>
+          </caption>
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Branch Id</th>
+              <th scope="col">Name</th>
+              <th scope="col">Address</th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let branch of branches;let i=index; ">
+              <th scope="row">{{ i + 1}}</th>
+              <td>{{ branch.branch_id }}</td>
+              <td>{{ branch.name}}</td>
+              <td>{{ branch.address}}</td>
+              <td><button type="button" class="btn btn-secondary" (click)="onSelectForUpdate(branch)">Update Detail</button></td> 
+              <td><button type="button" class="btn btn-secondary" (click)="onSelectForUpdate(branch)">Branch Accounts</button></td>                  
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>

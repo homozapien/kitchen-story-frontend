@@ -1,0 +1,148 @@
+<div class="card" *ngIf="profile">
+    <div class="jumbotron">
+        <div class="jumbotron">
+            <h3><span style="color:maroon">Selected Profile Detail</span></h3>
+        </div>
+    </div>
+   
+    <div class="card-body">
+        <div class="row alert alert-danger" *ngIf="errorMsg">
+            {{ errorMsg }}
+        </div>
+        <div class="row alert alert-success" *ngIf="apiResponse">
+            {{ apiResponse }}
+        </div>
+        <div class="row" *ngIf="!apiResponse">
+            <form #profileFormRef="ngForm" (ngSubmit)="updateProfile()">
+                <div class="row mb-3">
+                    <label for="requestid" class="col-sm-2 col-form-label">Request Id</label>
+                    <div class="form-group col-sm-8">
+                        <div class="input-group">
+                            <span class="input-group-text" id="bidot1"><i class="bi bi-dot"></i></span>
+                            <input type="text" class="form-control" name="requestid" [(ngModel)]="profile.requestId"
+                                disabled readonly aria-describedby="bidot1" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label for="username" class="col-sm-2 col-form-label">Username</label>
+                    <div class="form-group col-sm-8 ">
+                        <div class="input-group">
+                            <span class="input-group-text" id="inputGroupPrepend">@</span>
+                            <input type="text" class="form-control" name="username" [(ngModel)]="profile.userId"
+                                aria-describedby="inputGroupPrepend" disabled readonly>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label for="firstname" class="col-sm-2 col-form-label">Firstname</label>
+                    <div class="form-group col-sm-8">
+                        <div class="input-group">
+                            <span class="input-group-text" id="person1"><i class="bi bi-person-fill"></i></span>
+                            <input type="text" class="form-control" name="firstname" [(ngModel)]="profile.firstName"
+                                disabled readonly aria-describedby="person1" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label for="lastname" class="col-sm-2 col-form-label">Lastname</label>
+                    <div class="form-group col-sm-8">
+                        <div class="input-group">
+                            <span class="input-group-text" id="person2"><i class="bi bi-person-fill"></i></span>
+                            <input type="text" class="form-control" name="lastname" disabled readonly
+                                [(ngModel)]="profile.lastName" aria-describedby="person2">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label for="phonenum" class="col-sm-2 col-form-label">Phone</label>
+                    <div class="form-group col-sm-8">
+                        <div class="input-group">
+                            <span class="input-group-text" id="telephone1"><i class="bi bi-telephone"></i></span>
+                            <input type="text" class="form-control" name="phonenum" disabled readonly
+                                [(ngModel)]="profile.phone" aria-describedby="telephone1">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label for="emailId" class="col-sm-2 col-form-label">Email Address</label>
+                    <div class="form-group col-sm-8">
+                        <div class="input-group">
+                            <span class="input-group-text" id="envelop1"><i class="bi bi-envelope-at"></i></span>
+                            <input type="email" class="form-control" name="emailId" disabled readonly
+                                [(ngModel)]="profile.email" aria-describedby="envelop1" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label for="homebranch" class="col-sm-2 col-form-label">Home Branch</label>
+                    <div class="form-group col-sm-8">
+                        <div class="input-group">
+                            <span class="input-group-text" id="housebranch"><i class="bi bi-house"></i></span>
+                            <input type="text" class="form-control" name="homebranch" disabled readonly
+                                [(ngModel)]="profile.branchId" aria-describedby="housebranch" />
+                        </div>
+                    </div>
+                </div>
+
+                <fieldset>
+                    <legend>Update Section:</legend>
+
+                    <div class="row mb-3">
+                        <label for="decision" class="col-sm-2 col-form-label">Decision</label>
+                        <div class="form-group col-sm-8">
+                            <div class="input-group">
+                                <span class="input-group-text" id="checksqr"><i class="bi bi-check2-square"></i></span>
+                                <select class="form-select form-select-sm" name="decision"
+                                    [(ngModel)]="profile.requestStatus" aria-describedby="checksqr">
+                                    <option selected disabled value="">--choose--</option>
+                                    <option value="APPROVED">Approve</option>
+                                    <option value="REJECTED">Reject</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="remarks" class="col-sm-2 col-form-label">Remarks</label>
+                        <div class="form-group col-sm-8">
+                            <div class="input-group">
+                                <span class="input-group-text" id="bitextarea"><i class="bi bi-textarea"></i></span>
+                                <textarea class="form-control" name="remarks" id="remarks" rows="2"
+                                    aria-describedby="bitextarea" [(ngModel)]="profile.remarks"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="operations" class="col-sm-2 col-form-label">Approved Operations</label>
+                        <div class="form-group col-sm-8">
+                            <div class="form-check" *ngFor="let operation of operations;let i=index; ">
+                                <input class="form-check-input" type="checkbox" value="{{ operation.opCode }}"
+                                    (change)="getSelectedOperation($event)" name="chkBox{{ operation.opCode }}"
+                                    id="chkBox{{ operation.opCode }}">
+                                <label class="form-check-label" for="chkBox{{ operation.opCode }}">
+                                    {{ operation.opDescr }}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                </fieldset>
+
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label"></label>
+                    <div class="col-sm-8">
+                        <button class="btn btn-primary btn-block" type="submit">Update Profile</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

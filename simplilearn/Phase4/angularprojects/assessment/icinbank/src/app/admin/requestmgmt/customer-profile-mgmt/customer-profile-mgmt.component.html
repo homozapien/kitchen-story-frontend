@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="jumbotron">
+        <h2>Customer Profile Approval Board</h2>
+    </div>
+
+
+                <app-cust-profile-list (selectedPendingProfileEvt)="onSelectForUpdate($event)"
+                [updatedProfile]="updatedProfile"></app-cust-profile-list>
+     <br>
+    
+                <app-cust-profile-detail 
+                [pendingProfile]="pendingProfile"
+                (updatedProfileEvt)="onAfterProfileUpdate($event)"
+                ></app-cust-profile-detail>
+
+</div>
